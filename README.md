@@ -1,13 +1,20 @@
 # personal_dot_and_config_files
 List of my custom dotfiles and configurations
 
+## TL&DR
+1. **vsCode**: Manually copy "*vscode_keybindings.json*" content in vsCode
+2. **git**: Copy the "*.gitconfig*" file to the user folder `cp .gitconfig ~/` and update user information
+3. **bash**: Append content of "*.bashrc*" to the user folder `cat .bashrc >> ~/.bashrc`
+4. **mouse**: Copy config file `cp 90-evoluent.conf /etc/X11/xorg.conf.d/` then restart the session
+
+
 ## Vs code keybindings (vscode_keybindings.json)
 Set of prefered shortcut for vs code like IDE (vs code, cursor)
 - "ctrl+s" saves all the files
 - "ctrl+d" duplicate a selection or a line if nothing is selected
 - "ctrl+/" is toggling of comment (deactivating a shortcut for that taking precedent over the line comment due du bépo layout)
 
-BONUS: install "TODO Highlight" extension
+**BONUS**: install "TODO Highlight" extension
 
 ### Set up
 Open the IDE `keybindings.json` from the menu, copy and paste the content from the repo file into it.  
@@ -18,7 +25,7 @@ Open the IDE `keybindings.json` from the menu, copy and paste the content from t
 Set up the user info and my aliases for git
 
 ### Set up
-1. Copy the file in the user folder (remove or back if already exist)  
+1. Copy the file in the user folder (remove or do a backup if it already exist)  
 `cp .gitconfig ~/`
 2. Open the file and modify the placeholder for email and name  
 `vim ~/.gitconfig`
@@ -53,7 +60,7 @@ Then on session restart the mapping should be set.
 `cp 90-evoluent.conf /etc/X11/xorg.conf.d/`
 
 ## Bépo layout (bepo_vb_v1_3.klc)
-KLC file mapping for small personnal modification from the original bépo layout.  
+KLC file mapping for small personal modification from the original bépo layout.  
 Deviation includes:
 - inversion of "«" and "»" with "<" and ">"
 - deactivating the "no-break space" (and set it to "_")

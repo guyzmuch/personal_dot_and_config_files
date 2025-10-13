@@ -20,7 +20,6 @@ The configuration file needs to be but in "/etc/X11/xorg.conf.d/" (as sudo).
 Then on session restart the mapping should be set.  
 `cp 90-evoluent.conf /etc/X11/xorg.conf.d/`
 
-
 ## Bépo layout (bepo_vb_v1_3.klc)
 KLC file mapping for small personnal modification from the original bépo layout.  
 Deviation includes:
@@ -32,3 +31,23 @@ Deviation includes:
 ### Set up
 On windows, there is an ".exe" file to install the layout.  
 For linux, you have to look up (but by default original bépo layout is already present)
+
+## Custom bash prompt (.bashrc)
+My prefered bash prompt configuration (WIP).  
+- Add date and time
+- 2 lines prompt for readability of the command
+- removing host name (use only for local computer)
+
+### Set up
+In case you already have a ".bashrc" file, it is good to back it up  
+`cp ~/.bashrc ~/.bashrc.backup`
+
+Append the custom ".bashrc" file to the existing one (so no lost of previous configuration)  
+`cat .bashrc >> ~/.bashrc`
+
+If there is no ".bashrc" file in your system, then just copy the file to destination  
+`cp .bashrc ~/.bashrc`
+
+Activate the new prompt (or it will be activated on next terminal open)
+`source ~/.bashrc`
+

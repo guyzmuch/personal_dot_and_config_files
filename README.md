@@ -37,6 +37,7 @@ My prefered bash prompt configuration (WIP).
 - Add date and time
 - 2 lines prompt for readability of the command
 - removing host name (use only for local computer)
+- adding git branch name to the prompt
 
 ### Set up
 In case you already have a ".bashrc" file, it is good to back it up  

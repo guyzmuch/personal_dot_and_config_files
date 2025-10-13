@@ -1,0 +1,7 @@
+[user]
+	email = <MY_EMAIL>
+	name = <MY_NAME>
+[alias]
+	fetchpull = !git fetch && git pull
+	cm = commit -m
+	graph = log --all --oneline --graph

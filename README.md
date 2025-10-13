@@ -1,5 +1,17 @@
 # personal_dot_and_config_files
-list of my custom dotfiles and configurations
+List of my custom dotfiles and configurations
+
+## Vs code keybindings (vscode_keybindings.json)
+Set of prefered shortcut for vs code like IDE (vs code, cursor)
+- "ctrl+s" saves all the files
+- "ctrl+d" duplicate a selection or a line if nothing is selected
+- "ctrl+/" is toggling of comment (deactivating a shortcut for that taking precedent over the line comment due du bépo layout)
+
+BONUS: install "TODO Highlight" extension
+
+### Set up
+Open the IDE `keybindings.json` from the menu, copy and paste the content from the repo file into it.  
+(No easy way to append the changes to the existing file `~/.config/Code/User/keybindings.json` since it is an JSON array, and it might already contain other configuration)
 
 
 ## Git configuration (.gitconfig)

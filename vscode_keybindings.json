@@ -1,0 +1,40 @@
+// Place your key bindings in this file to override the defaults
+[
+    // Disable the default save command and move it to save all files
+    {
+        "key": "ctrl+s",
+        "command": "-workbench.action.files.save"
+    },
+    {
+        "key": "ctrl+s",
+        "command": "workbench.action.files.saveFiles"
+    },
+
+    // Disable the default "ctrl+D" commands and move it to duplicate line down or selection
+    {
+        "key": "ctrl+d",
+        "command": "-editor.action.addSelectionToNextFindMatch",
+        "when": "editorFocus"
+    },
+    {
+        "key": "ctrl+d",
+        "command": "-notebook.addFindMatchToSelection",
+        "when": "config.notebook.multiCursor.enabled && notebookCellEditorFocused && activeEditor == 'workbench.editor.notebook'"
+    },
+    {
+        "key": "ctrl+d",
+        "command": "editor.action.duplicateSelection",
+        "when": "editorTextFocus && editorHasSelection && !editorReadonly", // when in edition and text is selected, duplicate the selection
+    },
+    {
+        "key": "ctrl+d",
+        "command": "editor.action.copyLinesDownAction",
+        "when": "editorTextFocus && !editorHasSelection && !editorReadonly" // when in edition and no text is selected, duplicate the line
+    },
+
+    // Deactivating going to last tab using "ctrl+/" to avoid conflict with "Toggle Line Comment" (due to bépo layout)
+    {
+        "key": "ctrl+9",
+        "command": "-workbench.action.lastEditorInGroup"
+    }
+]

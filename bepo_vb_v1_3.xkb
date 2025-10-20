@@ -1,6 +1,5 @@
 
-// Version 1.1rc2 of the Bépo keyboard layout,
-// normalized by the AFNOR NF Z71‐300 norm.
+// Personal version of the Bépo keyboard layout, based on Bépo 1.1rc2
 //
 // Layout: https://bepo.fr/wiki/Version_1.1rc2
 // Normalization: https://normalisation.afnor.org/actualites/faq-clavier-francais/
@@ -22,9 +21,9 @@
 // ║ Ctrl  ║ WinG ║ Alt ║ Espace                  _ ║AltGr║ WinD ║WinM ║ Ctrl ║
 // ╚═══════╩══════╩═════╩═══════════════════════════╩═════╩══════╩═════╩══════╝
 partial alphanumeric_keys
-xkb_symbols "bepo_afnor" {
+xkb_symbols "bepo_vb_1_3" {
 
-	name[Group1]= "French (BEPO, AFNOR)";
+	name[Group1]= "French (BEPO, VB1_3)";
 
 	include "pc(pc105)"
 

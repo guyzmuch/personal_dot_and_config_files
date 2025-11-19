@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# Base on info from https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent
+
 # Default values
 key_name="github2"
 file_path="$HOME/.ssh/$key_name"

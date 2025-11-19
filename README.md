@@ -30,6 +30,10 @@ Set up the user info and my aliases for git
 2. Open the file and modify the placeholder for email and name  
 `vim ~/.gitconfig`
 
+### ssh key generation
+If needed, update the "git_shh_setup.sh" file with you information. Then to create and add a ssh key run:  
+.`/git_ssh_setup.sh`
+
 ## Custom bash prompt (.bashrc)
 My prefered bash prompt configuration (WIP).  
 - Add date and time

@@ -26,8 +26,12 @@ Set up the user info and my aliases for git
 
 ### Set up
 1. Copy the file in the user folder (remove or do a backup if it already exist)  
+`mkdir ~/.config/git cp .gitconfig ~/.config/git/config`  
+or if not on linux:  
 `cp .gitconfig ~/`
 2. Open the file and modify the placeholder for email and name  
+`vim ~/.config/git/config`  
+or if not on linux:  
 `vim ~/.gitconfig`
 
 ### ssh key generation

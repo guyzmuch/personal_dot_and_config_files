@@ -3,7 +3,7 @@
 `apt install fish fzf git keepass2`
 
 # Software for personal computer
-**Software list:** calibre dropbox firefox libreoffice steam vlc 
+**Software list:** calibre dropbox firefox libreoffice steam vlc  
 `apt install calibre dropbox firefox libreoffice steam vlc`
 
 # Via flatpack on linux source mirror

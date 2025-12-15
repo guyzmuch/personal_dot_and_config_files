@@ -10,7 +10,7 @@
 - pinta
 - zen (browser)
 
-# Non standart app on linux source mirror
+# Non standard app on linux source mirror
 - sourcegit https://sourcegit-scm.github.io/
 - cursor
 - vscode

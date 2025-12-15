@@ -67,14 +67,16 @@ The configuration file needs to be but in "/etc/X11/xorg.conf.d/" (as sudo).
 Then on session restart the mapping should be set.  
 `sudo cp mouse/90-evoluent.conf /etc/X11/xorg.conf.d/`
 
-## Bépo layout (bepo_layout/windows/bepo_vb_v1_3.klc)
-KLC file mapping for small personal modification from the original bépo layout.  
+## Custom bépo layout
+Files mapping for small personal modification from the original bépo layout.  
 Deviation includes:
-- inversion of "«" and "»" with "<" and ">"
-- deactivating the "no-break space" (and set it to "_")
-- inverting "…" with "·" for easy access
-- changing the apostrophe character
+- inversion of "«" and "»" with "<" and ">" (to have direct access to "<" and ">")
+- deactivating the "no-break space" and set it to "_" (to prevent unwanted and breaking spaces when in cap locks)
+- inverting "…" with "·" for easy access to the median point
+- changing the apostrophe character to have the code safe `'` directly accessible instead of the `’`
 
-### Set up
-On windows, there is an ".exe" file to install the layout in the `bepo_layout/windows/bepovb13.zip`.  
-For linux, you have to look up (but by default original bépo layout is already present)
+### Set up on windows (bepo_layout/windows/bepo_vb_v1_3.klc)
+On windows, there is an ".exe" file to install the layout in the `bepo_layout/windows/bepovb13.zip`.
+
+### Set up on linux (bepo_layout/linux/bepo_vb_v1_3.xkb)
+The attached file is the mapping use to have the modification on a linux system, but the way to implement it is to use the [linux_personalized_keyboard_layout_script](https://github.com/guyzmuch/linux_personalized_keyboard_layout_script) project that has a script to set up custom layout on linux based operating system.

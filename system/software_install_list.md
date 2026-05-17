@@ -14,3 +14,4 @@
 - sourcegit https://sourcegit-scm.github.io/
 - cursor
 - vscode
+- encryptpad (to encrypt file, need to add a repo to install https://evpo.net/encryptpad/default.aspx#installing)

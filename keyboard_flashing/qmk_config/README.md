@@ -1,16 +1,16 @@
-# QMK Configuration for ErgoDox EZ / ZSA (Bépo + Layers)
+# QMK Configuration for ErgoDox (Falbatech) — Bépo + Layers
 
-This directory contains the QMK configuration for your **ErgoDox EZ** or ZSA-compatible keyboard, with:
-- **BASE Layer**: Bépo layout + temporary access to Fn/num layer.
-- **FN_NUM Layer**: Function keys + numpad + accessible dot (for IPs, versions, etc.).
+This directory contains the QMK configuration for a **Falbatech ErgoDox** (classic wired clone: Teensy 2.0 + MCP23018, same layout as the original ErgoDox). It is **not** a ZSA ErgoDox EZ (no ZSA firmware, RGB stack, or configurator).
 
+QMK target: `ergodox_ez` — the matrix and bootloader match Falbatech / DIY ErgoDox builds even though the folder name says “EZ”.
 ---
 
 ## 📁 **Directory Structure**
 your_folder/  
-├── keymap.c    # Layer configuration  
-├── config.h    # QMK options (Autoshift, etc.)  
-└── README.md   # This file
+├── keymap.c       # Layer configuration  
+├── config.h       # QMK options  
+├── rules.mk       # QMK build options (e.g. Auto Shift)  
+└── README.md      # This file
 
 ---
 ## 🚀 **Steps to Flash the Keyboard**
@@ -18,8 +18,9 @@ your_folder/
 ### 1️⃣ **Install Dependencies (Linux Mint/Ubuntu/Debian)**
 ```bash
 sudo apt update
-sudo apt install -y git python3 python3-pip python3-venv dfu-util gcc-avr binutils-avr avr-libc
+sudo apt install -y git python3 python3-pip python3-venv teensy-loader-cli gcc-avr binutils-avr avr-libc
 ```
+On Debian/Ubuntu the CLI binary is `teensy_loader_cli` (underscore); QMK detects it automatically.
 
 ---
 ### 2️⃣ **Install QMK**
@@ -44,67 +45,85 @@ qmk setup
 # Create the directory for your keymap
 mkdir -p keyboards/ergodox_ez/keymaps/vince_bepo
 
-# Copy keymap.c and config.h to this directory
+# Copy keymap files to this directory
 cp /path/to/your/folder/keymap.c keyboards/ergodox_ez/keymaps/vince_bepo/
 cp /path/to/your/folder/config.h keyboards/ergodox_ez/keymaps/vince_bepo/
+cp /path/to/your/folder/rules.mk keyboards/ergodox_ez/keymaps/vince_bepo/
 ```
 > **Replace `/path/to/your/folder/`** with the actual path to your files.
 
 ---
 ### 4️⃣ **Compile the Firmware**
 ```bash
+cd qmk_firmware
+source venv/bin/activate
 qmk compile -kb ergodox_ez -km vince_bepo
 ```
 → The `.hex` file will be generated in:
-`qmk_firmware/.build/ergodox_ez_vince_bepo.default.hex`
+`qmk_firmware/ergodox_ez_base_vince_bepo.hex`
 
 ---
-### 5️⃣ **Put the Keyboard in DFU Mode (Bootloader)**
-1. **Disconnect** the keyboard.
-2. **Hold down** the **Reset** button (usually on the back of the keyboard).
-3. **Plug in** the keyboard via USB **while holding the button**.
-4. **Release** the button after **3 seconds**.
+### **Export keymap JSON (visual layout)**
+
+After editing `keymap.c`, export a JSON file to view layers in [QMK Configurator](https://config.qmk.fm):
+
+```bash
+cd qmk_firmware
+source venv/bin/activate
+
+# Copy latest keymap into QMK first (if you edited files in this folder)
+cp /path/to/your/folder/keymap.c keyboards/ergodox_ez/keymaps/vince_bepo/
+
+# Export JSON (--no-cpp is required for most keymaps)
+qmk c2json -kb ergodox_ez -km vince_bepo --no-cpp \
+  -o /path/to/your/folder/vince_bepo.json
+```
+
+Then in the Configurator: **Keyboard settings** (gear icon) → **Import keymap.json** → select `vince_bepo.json`. Use the layer tabs to switch between BASE and FN_NUM.
+
+Re-run this export whenever you change `keymap.c` so the diagram stays in sync with your firmware.
+
+---
+### 5️⃣ **Put the Keyboard in Bootloader Mode**
+Falbatech ErgoDox boards use a **Teensy 2.0** with the **Halfkay** bootloader (not Atmel DFU). Reset is usually a small button on the Teensy (sometimes reachable through a hole in the case).
+
+1. **Disconnect** the keyboard (or use the reset button if already plugged in).
+2. **Press** the Teensy **reset** button briefly (or hold while plugging in USB on some builds).
+
+You have about **7 seconds** to start flashing after entering the bootloader.
 
 ---
 ### 6️⃣ **Flash the Firmware**
 ```bash
+cd qmk_firmware
+source venv/bin/activate
 qmk flash -kb ergodox_ez -km vince_bepo
 ```
-> If this fails, use `dfu-util` manually:
+> If `qmk flash` fails, flash manually (keyboard must be in bootloader mode):
 > ```bash
-> dfu-util -D .build/ergodox_ez_vince_bepo.default.hex -a 0 -R
+> cd qmk_firmware
+> source venv/bin/activate
+> teensy_loader_cli -mmcu=atmega32u4 -w -v ergodox_ez_base_vince_bepo.hex
 > ```
 
----
 ---
 ## 🔍 **Troubleshooting**
 
 | **Problem**               | **Solution** |
 |---------------------------|--------------|
-| `dfu-util: no DFU device` | Ensure the **Reset** button is held **before** plugging in the keyboard. |
-| Permission denied | Add yourself to the `plugdev` group:<br>`sudo usermod -a -G plugdev $USER`<br>Then **restart your session**. |
-| `qmk: command not found` | Add `~/.local/bin` to your `PATH`:<br>`echo 'export PATH="$HOME/.local/bin:$PATH"' >> ~/.bashrc`<br>`source ~/.bashrc` |
-| Keyboard not responding | Retry the DFU procedure. Wait 10 minutes (automatic reset may occur). |
+| `teensy-loader-cli: not found` | Install the flasher:<br>`sudo apt install -y teensy-loader-cli`. Falbatech ErgoDox uses Teensy, not `dfu-util`. |
+| Flash window expired | Re-enter bootloader (reset button), then run `qmk flash` within 7 seconds. |
+| Permission denied | Add yourself to the `plugdev` group:<br>`sudo usermod -a -G plugdev $USER`<br>Then **log out and back in**. |
+| `qmk: command not found` | Activate the QMK virtualenv first:<br>`cd qmk_firmware`<br>`source venv/bin/activate` |
+| Keyboard not responding | Press Teensy reset, re-flash. If still dead, check USB cable and that both halves are connected (TRRS). |
 
----
----
-## 📌 **Key Features**
-
-| **Feature**               | **Key**                     | **Layer** |
-|---------------------------|-----------------------------|-----------|
-| Temporary access to FN_NUM | **Home** (right thumb)      | BASE      |
-| Dot (instead of comma)    | **DOT_MAC** (row 4, right hand) | FN_NUM |
-| Start of line (Mac)       | **Cmd + ←**                 | MAC       |
-| End of line (Mac)         | **Cmd + →**                 | MAC       |
-| Microphone toggle (Mac)   | **MIC_TOG** (row 4, right hand) | MAC   |
-| Caps Lock                 | **Caps Lock** (left thumb)  | MAC       |
 
 ---
 ## 💡 **Notes**
-- **To verify** the keyboard is in DFU mode:
+- **To verify** the keyboard is in bootloader mode:
   ```bash
-  lsusb | grep -i "Atmel"
+  lsusb | grep -i "Teensy\|Halfkay\|16c0:0478"
   ```
-  → Should display: `Atmel Corp. ATmega32U4 DFU`.
+  → Should show something like: `Van Ooijen Technische Informatica Teensy Halfkay Bootloader`.
 
 - **Full reset**: If your keyboard is unresponsive, press and hold the **Reset** button for 10+ seconds to force a restart.

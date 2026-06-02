@@ -46,9 +46,7 @@ qmk setup
 mkdir -p keyboards/ergodox_ez/keymaps/vince_bepo
 
 # Copy keymap files to this directory
-cp /path/to/your/folder/keymap.c keyboards/ergodox_ez/keymaps/vince_bepo/
-cp /path/to/your/folder/config.h keyboards/ergodox_ez/keymaps/vince_bepo/
-cp /path/to/your/folder/rules.mk keyboards/ergodox_ez/keymaps/vince_bepo/
+cp /path/to/your/folder/{keymap.c,config.h,rules.mk} keyboards/ergodox_ez/keymaps/vince_bepo/
 ```
 > **Replace `/path/to/your/folder/`** with the actual path to your files.
 

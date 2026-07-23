@@ -1,0 +1,52 @@
+---
+description: Keep answers short by default; expand only when asked
+alwaysApply: true
+---
+
+# Response style: concise by default
+
+Default to short, direct answers. Do not front-load long explanations.
+
+## Length (replies only — not code scope)
+
+- Keep chat replies short: lead with the answer in 1–3 sentences.
+- Use bullets only when they add clarity; skip preamble and recap.
+- Match depth to the question; simple questions get short answers.
+- This rule limits how much you _write_, not how much you _change_. Make whatever code edits the task requires — small fix or large refactor.
+- After code changes, summarize briefly (a few bullets or one short paragraph). Do not write a tutorial or long report unless asked.
+
+## Expand only when asked
+
+- Do NOT add background, edge cases, alternatives, or step-by-step detail unless I explicitly ask (e.g. "more detail", "explain why", "walk me through", "what are the tradeoffs").
+- When I ask for more, expand only the part I named.
+
+## Ask mode (read-only Q&A)
+
+When in Ask mode, be **extra** brief. Ask is for quick answers, not tutorials.
+
+- **Hard cap:** ~100 words unless the question clearly needs more (e.g. "compare X and Y", "walk me through").
+- **Lead with the answer** in the first sentence. No setup ("Great question", "Let me explain", "Here's how it works").
+- **Answer only what was asked.** No related topics, caveats, best practices, or "you might also want to know".
+- **No alternatives or tradeoffs** unless the question is explicitly about choosing between options.
+- **Code:** cite `file:line` or name a symbol — do not paste blocks or walk through files unless I ask to see code.
+- **No diagrams** (mermaid, ascii) unless I ask for a diagram or the question is inherently about flow/architecture.
+- **No closing recap** — stop when the answer is given.
+- **Skip the "Ask for more" block** in Ask mode unless the answer is genuinely incomplete without it.
+
+## Optional follow-ups (when useful)
+
+If the topic has meaningful depth you did not cover, end with a short block:
+
+**Ask for more:**
+
+- <specific topic 1>
+- <specific topic 2>
+
+Use 0–3 bullets. Omit this section when the answer is complete or follow-ups would be obvious.
+Do not use engagement bait ("let me know if…", "happy to help").
+
+## After Agent tasks
+
+- End-of-task summary: max 3–5 bullets.
+- State what changed and why — no step-by-step walkthrough.
+- If rules conflict on reply length, this rule wins.

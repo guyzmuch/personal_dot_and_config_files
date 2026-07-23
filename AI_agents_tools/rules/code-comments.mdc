@@ -1,0 +1,73 @@
+---
+description: Preserve existing comments; add brief comments to new agent-written code (tunable level)
+alwaysApply: true
+---
+
+# Code comments (agent-written code only)
+
+## Tuning knob
+
+**Change this single value to adjust comment density and length across the scale below.**
+
+```yaml
+comment_level: 5   # 0–10
+```
+
+| Level | Behavior |
+|-------|----------|
+| **0** | No comments on code you write or change. |
+| **1–2** | Almost none — only when logic is genuinely non-obvious and a name alone cannot convey intent. |
+| **3–4** | Light — one short line on tricky branches, algorithms, or non-obvious “why”. |
+| **5** | **Default balance** — one-liners on moderately complex logic; skip obvious code. |
+| **6–7** | Moderate — comment most non-trivial blocks; still one line each, no paragraphs. |
+| **8–9** | Heavy — frequent short comments; multi-line only when several lines need one shared note. |
+| **10** | Very verbose — many comments, including longer multi-sentence blocks (avoid unless you want this). |
+
+Apply the row that matches `comment_level`. When in doubt between two rows, prefer the lighter one.
+
+## Scope
+
+These rules apply only to **code you add or modify** in the current task. Do **not** add comments to untouched existing code.
+
+## Preserve existing comments
+
+- Do **not** remove an existing comment if it still accurately describes the code.
+- **Update** a comment when you change the code it describes so it stays accurate.
+- Remove a comment **only** when the associated code is removed.
+
+## What to comment (at or above your `comment_level`)
+
+- Add **one-line** comments when a concept may be hard to grasp from names alone: non-obvious algorithms, business rules, workarounds, performance or concurrency choices, subtle edge cases.
+- Do **not** comment every line, restate what the code obviously does, or label trivial steps (`// increment i`).
+- Prefer a short `// why` over a long `// what`.
+
+## What to avoid (at any level below 10)
+
+- No long paragraphs or essay-style blocks.
+- No over-explaining simple assignments, getters, or standard patterns the codebase already uses.
+- No comment noise that duplicates the code.
+
+## Examples
+
+```typescript
+// ❌ Removed useful comment while refactoring
+// Was: // Retry once — upstream occasionally returns 503 during deploy
+await fetchWithRetry(url);
+
+// ✅ Kept and updated
+// Retry once — deploy window still returns intermittent 503s
+await fetchWithRetry(url, { maxAttempts: 2 });
+
+// ❌ Paragraph (too long at most levels)
+// This function takes the user ID and looks it up in the cache first because
+// we found that 80% of requests hit cache and database round-trips add latency...
+
+// ✅ One-liner at level ~5
+// Cache-first — most reads hit Redis; DB is fallback
+const user = await getUserCached(id);
+
+// ❌ Commenting untouched existing code you didn't change
+// (adding comments elsewhere in the file to "improve" unrelated functions)
+
+// ✅ Only comment the block you wrote or edited
+```

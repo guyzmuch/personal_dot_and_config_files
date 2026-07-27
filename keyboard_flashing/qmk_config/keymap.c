@@ -6,8 +6,43 @@ enum layers {
     FN_NUM = 1,
 };
 
+enum custom_keycodes {
+    TH_PASTE_SHOT = SAFE_RANGE,  // tap = Ctrl+V, hold = Ctrl+Gui+Shift+4 (screenshot on mac)
+};
+
 #define _______ KC_TRNS
 #define XXXXXXX KC_NO
+
+bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+    static uint16_t th_timer;
+
+    switch (keycode) {
+        case TH_PASTE_SHOT:
+            if (record->event.pressed) {
+                th_timer = timer_read();
+            } else {
+                if (timer_elapsed(th_timer) < TAPPING_TERM) {
+                    tap_code16(LCTL(BP_V));
+                } else {
+                    tap_code16(LCTL(LGUI(LSFT(KC_4))));
+                }
+            }
+            return false;
+    }
+    return true;
+}
+
+// Indicator LEDs (top-right on ErgoDox / many Falbatech clones): LED1 = FN layer
+layer_state_t layer_state_set_user(layer_state_t state) {
+    ergodox_right_led_1_off();
+    ergodox_right_led_2_off();
+
+    if (get_highest_layer(state) == FN_NUM) {
+        ergodox_right_led_1_on();
+    }
+
+    return state;
+}
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -19,16 +54,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         KC_LSFT,  BP_A,     BP_U,     BP_I,     BP_E,     BP_COMM,
         KC_LCTL,  BP_AGRV,  BP_Y,     BP_X,     BP_DOT,   BP_K,     KC_ENT,
         KC_LCTL,  KC_LALT,  BP_DLR,   KC_LEFT,  KC_RGHT,
-                                              LCTL(BP_C),  LCTL(BP_V),
+                                              LCTL(BP_C),  TH_PASTE_SHOT,
                                                               KC_LGUI,
-                                               KC_SPC,  KC_LSFT,  MO(FN_NUM),
+                                               KC_SPC,  KC_LSFT,  TT(FN_NUM),
         // right hand
         KC_DEL,   BP_AT,    BP_PLUS,  BP_MINS,  BP_SLSH,  BP_ASTR,  BP_EQL,
         KC_BSPC,  BP_DCIR,  BP_V,     BP_D,     BP_L,     BP_J,     BP_Z,
                  BP_C,     BP_T,     BP_S,     BP_R,     BP_N,     BP_M,
         KC_ENT,    BP_QUOT,  BP_Q,     BP_G,     BP_H,     BP_F,     BP_W,
                         KC_UP,    KC_DOWN,  BP_PERC,  KC_RALT,  KC_RCTL,
-        KC_HOME,  KC_END,
+        LCTL(KC_LEFT),  LCTL(KC_RGHT),
         KC_PGUP,
         KC_PGDN,  KC_RSFT,  KC_SPC
     ),
@@ -52,6 +87,6 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                           KC_P0,    XXXXXXX,   XXXXXXX,  _______,  _______,
         _______,  _______,
         _______,
-        _______,  _______,  _______
+        _______,  KC_CAPS,  _______
     ),
 };

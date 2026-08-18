@@ -4,7 +4,7 @@
 #define TAPPING_TOGGLE 1  // TT(): 1 tap toggles, hold = momentary
 
 // Time before auto-shift is triggered
-#define AUTO_SHIFT_TIMEOUT=230
+#define AUTO_SHIFT_TIMEOUT 230
 
 #define NO_AUTO_SHIFT_TAB
 

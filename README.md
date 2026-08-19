@@ -88,3 +88,7 @@ On windows, there is an ".exe" file to install the layout in the `bepo_layout/wi
 
 ### Set up on linux (bepo_layout/linux/bepo_vb_v1_3.xkb)
 The attached file is the mapping use to have the modification on a linux system, but the way to implement it is to use the [linux_personalized_keyboard_layout_script](https://github.com/guyzmuch/linux_personalized_keyboard_layout_script) project that has a script to set up custom layout on linux based operating system.
+
+## Keyboard flashing
+Keymap for the set up of my ergodox splited keyboard with bépo and curstom keys.  
+See the readme in the folder for more details:

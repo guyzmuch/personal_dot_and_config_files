@@ -1,0 +1,4 @@
+{
+    "cursor.composer.usageSummaryDisplay": "always",
+    "cursor.composer.queueMessageDefaultBehavior": "stop-and-send"
+}

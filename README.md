@@ -2,15 +2,15 @@
 List of my custom dotfiles and configurations
 
 ## TL&DR
-1. **vsCode**: Manually copy "*vscode/vscode_keybindings.json*" content in vsCode
+1. **vsCode**: Manually copy "*vscode/vscode_keybindings.json*" and "*vscode/vscode_settings.json*" content in vsCode / Cursor
 2. **AI agent**: copy the content of the folder "*AI_agents_tools/*" into "*~/.agents*"
 3. **git**: Copy the "*git/.gitconfig*" file to the user folder `cp git/.gitconfig ~/` and update user information
 4. **bash**: Append content of "*system/.bashrc*" to the user folder `cat system/.bashrc >> ~/.bashrc`
 5. **mouse**: Copy config file `cp mouse/90-evoluent.conf /etc/X11/xorg.conf.d/` then restart the session
 
 
-## Vs code keybindings (vscode/vscode_keybindings.json)
-Set of prefered shortcut for vs code like IDE (vs code, cursor)
+## Vs code (vscode/vscode_keybindings.json, vscode/vscode_settings.json)
+Set of prefered shortcut and settings for vs code like IDE (vs code, cursor)
 - "ctrl+s" saves all the files
 - "ctrl+d" duplicate a selection or a line if nothing is selected
 - "ctrl+/" is toggling of comment (deactivating a shortcut for that taking precedent over the line comment due du bépo layout)
@@ -18,8 +18,8 @@ Set of prefered shortcut for vs code like IDE (vs code, cursor)
 **BONUS**: install "TODO Highlight" extension
 
 ### Set up
-Open the IDE `keybindings.json` from the menu, copy and paste the content from the repo file into it.  
-(No easy way to append the changes to the existing file `~/.config/Code/User/keybindings.json` since it is an JSON array, and it might already contain other configuration)
+Open the IDE `keybindings.json` and `settings.json` from the menu, copy and paste the content from the corresponding repo files into them.  
+(No easy way to append the changes to the existing files `~/.config/Code/User/keybindings.json` and `~/.config/Code/User/settings.json` since they are JSON, and they might already contain other configuration)
 
 ## AI agent (AI_agents_tools/*)
 Set of personal skills, rules and commands for agent and AI assisted IDE

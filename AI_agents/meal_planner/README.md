@@ -28,7 +28,9 @@ The agent creates `data/` from `templates/` on first use. `data/` is git-ignored
 
 ### Re-proposal rules
 
-Nothing proposed in the last 14 days comes back. After that, meals come back depending on their rating: **5** after 3 weeks, **4** after 6 weeks, **3** after 3 months, **1–2** never. Meals proposed but never picked can come back after 4 weeks. Each slot usually mixes one past favorite, one new meal close to your taste, and one new meal that's a bit of a stretch.
+Nothing proposed in the last 7 days comes back. After that, meals come back depending on their rating: **5** after 3 weeks, **4** after 6 weeks, **3** after 3 months, **1–2** never. Meals proposed but never picked can come back after 4 weeks. Each slot usually mixes one past favorite, one new meal close to your taste, and one new meal that's a bit of a stretch.
+
+Your **go-to meals** (easy dishes you cook often, like pasta) live in a list in `data/taste_profile.md`. They ignore these delays. When you reject all the options of a slot, the new proposal includes one go-to meal as an easy choice, next to two new meals.
 
 To change these rules, edit "Selection rules" in `AGENTS.md`.
 

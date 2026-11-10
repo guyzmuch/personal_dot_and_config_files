@@ -19,6 +19,10 @@
 <!-- Ingredients, dishes, cuisines, flavours. -->
 - _(unknown)_
 
+## Go-to meals
+<!-- Easy, fast meals cooked often. One is offered when all options of a slot are rejected. -->
+- _(unknown)_
+
 ## Cooking habits
 <!-- Time available, skill level, batch cooking, leftovers... -->
 - _(unknown)_

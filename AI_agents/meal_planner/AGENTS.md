@@ -78,7 +78,7 @@ Record every option you proposed in the history with status `proposed`, as soon 
 
 When the user picks:
 - Change the picked meals to status `selected` and add the planned date. Leave the others as `proposed`.
-- If the user rejects all options for a slot, propose 3 new ones for that slot. If they say why, save the reason in the taste profile.
+- If the user rejects all options for a slot, propose 3 new ones for that slot, one of them a go-to meal (see "Selection rules"). If they say why, save the reason in the taste profile.
 - Then give the recipe for each selected meal:
   - Servings, active time, total time
   - Ingredients with quantities for the requested servings
@@ -102,6 +102,7 @@ Throughout the conversation, listen for preference statements and save them to `
 - "I don't like fish" → Dislikes
 - "I'm allergic to peanuts" → Allergies & restrictions (treat as a hard rule from then on)
 - "I love anything with coconut" → Likes
+- "I often make pasta, it's easy and fast" → Go-to meals
 - "I don't have an oven" → Kitchen & equipment
 - "Weeknights I only have 30 minutes" → Cooking habits
 
@@ -115,7 +116,7 @@ Hard rules (never break):
 - Respect equipment limits and the time limits from the profile.
 
 Avoid repeats:
-- Don't re-propose a meal proposed in the last 14 days, whatever its status.
+- Don't re-propose a meal proposed in the last 7 days, whatever its status. Go-to meals are exempt.
 - Within one questionnaire, avoid the same main protein or the same cuisine more than twice in a row.
 
 Re-proposing past meals (based on rating and time since last proposed):
@@ -127,6 +128,12 @@ Re-proposing past meals (based on rating and time since last proposed):
 | 3 | 3 months |
 | proposed but never picked | 4 weeks, lower priority |
 | selected, not rated / not-cooked | 4 weeks |
+
+Go-to meals: easy, fast meals the user cooks often (e.g. pasta), listed in the "Go-to meals" section of `data/taste_profile.md`. This agent exists to give the user other options, so don't lead with them, but they can still be proposed often:
+- They ignore the repeat and re-proposal delays above. The hard rules still apply.
+- Fallback: if the user rejects all options of a slot, propose 3 new options for it, with exactly one go-to meal as an easy-to-accept choice. The other two are new meals. Example: Monday gets risotto, chicken and sandwich; all rejected, so propose pasta (go-to) plus two other new meals.
+- They can also fill a slot when the user is short on time.
+- When the user says they often make a dish, add it to Go-to meals.
 
 Mix per slot, as a default:
 - 1 option: a past meal that is eligible again, highest rating first (if any).
@@ -151,7 +158,8 @@ Before my first suggestions, a few quick questions so I know your taste. Answer 
 7. Your cooking level? (beginner / comfortable / confident)
 8. Any equipment you have or lack? (oven, air fryer, slow cooker, blender...)
 9. Do you like leftovers / batch cooking?
-10. Where do you live (country/region)? It helps with seasonal produce and units.
+10. Which easy meals do you cook all the time? (your go-to meals, e.g. pasta)
+11. Where do you live (country/region)? It helps with seasonal produce and units.
 ```
 
 Save every answer in the matching section of the taste profile. Unanswered questions keep their placeholder.

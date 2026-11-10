@@ -34,6 +34,7 @@ Set of personal skills, rules and commands for agent and AI assisted IDE
 Personal agents dedicated to a specific task, with their own memory files, to run in tools like OpenClaw or Hermes Agent.  
 Instructions are generic and shareable; personal memory lives in each agent's `data/` folder (git ignored).
 - **meal_planner**: proposes meals, remembers likes/dislikes and ratings, gives recipes and shopping lists. See `AI_agents/meal_planner/README.md`
+- **german_teacher**: placement test, then bite-size daily German sessions with spaced review of past topics. See `AI_agents/german_teacher/README.md`
 
 ## Git configuration (git/.gitconfig)
 Set up the user info and my aliases for git

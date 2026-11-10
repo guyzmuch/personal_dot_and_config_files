@@ -10,6 +10,8 @@
 - Past learning: _(unknown)_
 - Time per day: _(unknown)_
 - Interests (for themes): _(unknown)_
+- Preferred formats (vocabulary, exercises, theory, role-play): _(unknown)_
+- Daily reminder (email/message, on or off, time): _(unknown)_
 
 ## Estimated level (CEFR)
 <!-- A1, A2, B1, B2, C1, C2. Updated by the agent as the learner progresses. -->
@@ -22,6 +24,10 @@
 
 ## What works for me
 <!-- Exercise formats, pace, tone: what helps, what doesn't. -->
+- _(unknown)_
+
+## What has not worked
+<!-- Previous learning methods, apps or exercise types that did not work, and why. -->
 - _(unknown)_
 
 ## Notes

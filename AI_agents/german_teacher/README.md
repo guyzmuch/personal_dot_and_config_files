@@ -10,7 +10,8 @@ Made for agent tools that read workspace instruction files and can read/write fi
 2. **Daily session (~5–10 min)**:
    - a quick warm-up on topics due for review,
    - a mini-lesson on one new topic, with examples first and the rule after,
-   - 3–5 short exercises, then corrections with one-line explanations,
+   - 3–5 short exercises, including optional role-play (a sub-agent plays a character, you get feedback only at the end),
+   - corrections that guide you with hints first so you can retry; you can always ask for the answer,
    - "too easy / just right / too hard?" so the agent can adapt.
    During the first 10 sessions there is only **one theme per session**, to keep it simple.
 3. **Mini mode**: no energy today? Ask for a mini session: 3 questions, 2 minutes.
@@ -39,8 +40,9 @@ The agent needs its own workspace folder containing these files, with read/write
 
 ### Daily reminder
 
-The agent can't message you on its own unless your tool schedules it. To get a lesson every day:
+Optional: the agent asks during the placement test whether you want a daily email or message, and you can turn it on or off anytime. It can't message you on its own unless your tool schedules it. To get a lesson every day:
 - **OpenClaw / Hermes**: both support scheduled (cron) tasks sent to an agent. Schedule a daily message such as *"Start today's German session"* to this agent, at a time that suits you (e.g. on your commute).
+- **Email**: if your tool has an email connector, have the scheduled task email you the day's lesson prompt. Remove the schedule to turn it off.
 - **Other tools**: just open a chat with the agent and say hi.
 
 > Tool setups change often. If something doesn't match your version, check the tool's docs for "workspace", "context files" and "cron" / "scheduled tasks".

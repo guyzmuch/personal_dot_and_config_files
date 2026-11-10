@@ -35,6 +35,7 @@ Personal agents dedicated to a specific task, with their own memory files, to ru
 Instructions are generic and shareable; personal memory lives in each agent's `data/` folder (git ignored).
 - **meal_planner**: proposes meals, remembers likes/dislikes and ratings, gives recipes and shopping lists. See `AI_agents/meal_planner/README.md`
 - **german_teacher**: placement test, then bite-size daily German sessions with spaced review of past topics. See `AI_agents/german_teacher/README.md`
+- **language_teacher**: generic version of the german_teacher, for any language. See `AI_agents/language_teacher/README.md`
 
 ## Git configuration (git/.gitconfig)
 Set up the user info and my aliases for git

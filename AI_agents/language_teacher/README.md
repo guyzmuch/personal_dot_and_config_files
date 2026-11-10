@@ -1,0 +1,63 @@
+# Language teacher agent
+
+A generic language learning companion for bite-size, regular practice, for any language. It tests your level once, then gives you a short session every day, remembers every topic you've seen and how well you know it, and brings old topics back before you forget them.
+
+It is the language-agnostic version of the [German teacher](../german_teacher/README.md), which is tuned specifically for German (its placement test covers German-specific points like cases and verb position). Use the German one if you learn German, this one for anything else.
+
+Made for agent tools that read workspace instruction files and can read/write files, like [OpenClaw](https://openclaw.ai) or [Hermes Agent](https://hermes-agent.nousresearch.com).
+
+## How it works
+
+1. **Placement test (first time)**: a few questions about you (target language, native language, goals, time per day, interests, what hasn't worked before, preferred formats), then 2–3 short rounds of questions that get harder as long as you're doing well. You can stop anytime and continue another day. Complete beginner? Skip the test.
+2. **Daily session (~5–10 min)**:
+   - a quick warm-up on topics due for review,
+   - a mini-lesson on one new topic, with examples first and the rule after,
+   - 3–5 short exercises, including optional role-play (a sub-agent plays a character, you get feedback only at the end),
+   - corrections that guide you with hints first so you can retry; you can always ask for the answer,
+   - "too easy / just right / too hard?" so the agent can adapt.
+   During the first 10 sessions there is only **one theme per session**, to keep it simple.
+3. **Mini mode**: no energy today? Ask for a mini session: 3 questions, 2 minutes.
+4. **Questions anytime**: ask for more examples, a re-explanation, or how to say something. Real topics you ask about get added to your review list.
+
+### Spaced review
+
+Each topic has a mastery level from 0 to 5. Good results raise it, struggles lower it, and the level sets when the topic comes back: from the next day (0) up to one month later (5). No topic is ever "done": even solid ones come back monthly. Recurring mistakes are noted and targeted in reviews.
+
+### Memory
+
+| File | Content | Shareable? |
+|---|---|---|
+| `AGENTS.md` | How the agent works: placement test, sessions, review rules | Yes, generic |
+| `SOUL.md` | Personality and tone | Yes, generic |
+| `templates/` | Empty versions of the memory files | Yes |
+| `data/learner_profile.md` | Target language, level per skill, goals, interests, what works and what doesn't | **No, personal** |
+| `data/topic_tracker.md` | Every topic seen, mastery, next review date, recurring mistakes | **No, personal** |
+| `data/session_log.md` | One line per session: topics, score, how it felt | **No, personal** |
+
+The agent creates `data/` from `templates/` on first use. `data/` is git-ignored.
+
+Learning several languages? Use one workspace (one copy of this agent) per language, so levels and topics stay separate.
+
+## Setup
+
+The agent needs its own workspace folder containing these files, with read/write access to it. Setup is the same as the [meal planner](../meal_planner/README.md#setup), replacing `meal_planner`/`meal-planner` with `language_teacher`/`language-teacher`.
+
+### Daily reminder
+
+Optional: the agent asks during the placement test whether you want a daily email or message, and you can turn it on or off anytime. It can't message you on its own unless your tool schedules it. To get a lesson every day:
+- **OpenClaw / Hermes**: both support scheduled (cron) tasks sent to an agent. Schedule a daily message such as *"Start today's language session"* to this agent, at a time that suits you (e.g. on your commute).
+- **Email**: if your tool has an email connector, have the scheduled task email you the day's lesson prompt. Remove the schedule to turn it off.
+- **Other tools**: just open a chat with the agent and say hi.
+
+> Tool setups change often. If something doesn't match your version, check the tool's docs for "workspace", "context files" and "cron" / "scheduled tasks".
+
+## Usage examples
+
+- *"Hi!"* / *"Today's lesson"* → daily session
+- *"I want to learn Spanish."* → placement test
+- *"Mini session please, I'm tired."*
+- *"I didn't get exercise 3, can you explain again?"*
+- *"Role-play: I'm ordering at a restaurant."*
+- *"How do I say 'I'd like to book a table for two'?"*
+- *"That was way too easy."* → difficulty goes up
+- *"What have I learned so far?"* / *"Which topics are still weak?"*

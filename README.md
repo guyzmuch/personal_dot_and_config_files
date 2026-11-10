@@ -7,6 +7,7 @@ List of my custom dotfiles and configurations
 3. **git**: Copy the "*git/.gitconfig*" file to the user folder `cp git/.gitconfig ~/` and update user information
 4. **bash**: Append content of "*system/.bashrc*" to the user folder `cat system/.bashrc >> ~/.bashrc`
 5. **mouse**: Copy config file `cp mouse/90-evoluent.conf /etc/X11/xorg.conf.d/` then restart the session
+6. **AI agent personas**: see the README in each "*AI_agents/*" sub folder
 
 
 ## Vs code (vscode/vscode_keybindings.json, vscode/vscode_settings.json)
@@ -28,6 +29,11 @@ Set of personal skills, rules and commands for agent and AI assisted IDE
 
 1. Copy all the file in the `~/.agents` folder. It will keep existing files, but overwrite same name files 
 `mkdir -p ~/.agents && cp -r AI_agents_tools/* ~/.agents`
+
+## AI agent personas (AI_agents/*)
+Personal agents dedicated to a specific task, with their own memory files, to run in tools like OpenClaw or Hermes Agent.  
+Instructions are generic and shareable; personal memory lives in each agent's `data/` folder (git ignored).
+- **meal_planner**: proposes meals, remembers likes/dislikes and ratings, gives recipes and shopping lists. See `AI_agents/meal_planner/README.md`
 
 ## Git configuration (git/.gitconfig)
 Set up the user info and my aliases for git

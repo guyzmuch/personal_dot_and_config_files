@@ -1,1 +1,3 @@
 keyboard_flashing/qmk_config/*.json
+# Personal memory of agent personas
+AI_agents/*/data/
